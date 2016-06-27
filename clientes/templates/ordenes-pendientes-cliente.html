@@ -1,0 +1,181 @@
+{% extends "base.html" %} 
+{% load static from staticfiles %}
+{% load humanize %}
+{% block staticos %}
+	<link rel="stylesheet" href="{% static "css/mdl-jquery-modal-dialog.css" %}">
+	<style type="text/css">
+	html, body {
+        height: 100%;
+        width: 100% ;
+    }
+		#map {
+	        height: 400px !important;
+	        width: 100% !important;
+      	}
+      	
+	</style>
+    
+{% endblock %}
+{% block header %}
+	<header class="mdl-layout__header mdl-layout__header--scroll mdl-color--deep-orange-500">	  			
+		<div class="mdl-layout--large-screen-only mdl-layout__header-row ">	    		
+	    	<div class=" mdl-layout-spacer"></div>
+	    	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+				<form>
+		            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+		              	<i class="material-icons">search</i>
+		            </label>
+		            <div class="mdl-textfield__expandable-holder">
+		              	<input class="mdl-textfield__input" type="text" id="search-field">
+		            </div>
+	            </form>
+	      	</div>
+		</div>
+		<div class="mdl-typography--text-center ">
+			<div class="mdl-layout-title">
+				<h1 >{{page_title}} - {{cliente.nombre}} {{cliente.apellidos}}</h1>
+			</div>
+
+			
+		</div>
+		<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+			<!---->
+		</div>	
+		<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--deep-orange-A400">
+          	<a href="#creditos" class="mdl-layout__tab is-active">Creditos</a>
+		</div>
+		
+			
+	</header>
+{% endblock %}
+
+{% block contedor %}
+  	<main class="mdl-layout__content mdl-color--grey-100">	  	
+	  	<div class="mdl-grid demo-content mdl-layout__tab-panel is-active" id="creditos">
+	  		<div class="mdl-grid">	  		
+	  			<div class="demo-cards mdl-cell mdl-cell--3-col mdl-grid mdl-grid--no-spacing">	
+	  				
+		  			<div class="demo-card-image mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp" style="background-image: url('{{cliente.imagen.url}}');background-repeat: no-repeat;background-size: cover;background-position: center;">
+						<div class="mdl-card__title mdl-card--expand"></div>
+						<div class="mdl-card__actions">
+							<span class="demo-card-image__filename">{{cliente.nombre}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="demo-cards mdl-cell mdl-cell--9-col mdl-grid mdl-grid--no-spacing">	
+				
+		    	<section class="section--center mdl-grid mdl-grid--no-spacing mdl-cell--10-col mdl-shadow--2dp">
+		    		<div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+			    		<h4>Ordenes Pendientes</h4>
+			    		
+			    		<div class="section__text mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+			    		<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-fullwidth">
+						  	<thead>
+						    <tr>
+						      	<th class="mdl-data-table__cell--non-numeric mdl-fullwidth ">Orden</th>
+						      	<th>Cliente</th>
+						      	<th>Subtotal</th>
+						      	<th>Total</th>
+						      	<th>Saldo</th>					      	
+						    </tr>
+						  	</thead>
+						  	<tbody>
+						  	{% for op in ordenes_pendientes %}
+						    	<tr>
+						      		<td class="mdl-data-table__cell--non-numeric">
+						      			<a href="{{ op.get_absolute_url }}">
+						      				{{op.id}}
+						      			</a>
+						      		</td>
+						      		<td>{{op.cliente.nombre}} {{op.cliente.apellidos}}</td>				      	
+						      		<td>{{op.subtotal}}</td>
+						      		<td>{{op.total}}</td>
+						      		<td>{{op.saldo}}</td>
+						    	</tr>
+						    {% endfor %}
+						    
+						  	</tbody>
+						</table>
+		                </div>
+			    		
+			    	</div>
+		    		<div class="mdl-card__actions">
+	              	</div>	              	
+		    	</section>
+		    	</div>
+	    	</div>
+	  	</div>	
+		    
+			
+   	</main>
+{% endblock %}
+
+{% block adicional-scripts %}
+    <script>
+	    var map = null;
+	    var marker = null;
+		function initMap() {
+	  		map = new google.maps.Map(document.getElementById('map'), {
+	    		zoom: 10,
+		    	center: {lat: 20.057188, lng: -102.722364}
+		  	});
+		  	var geocoder = new google.maps.Geocoder();
+
+		  	document.getElementById('submit').addEventListener('click', function() {
+		    	geocodeAddress(geocoder, map);
+		  	});
+		}
+
+		function geocodeAddress(geocoder, resultsMap) {
+		  	var address = document.getElementById('address').value;
+		  	geocoder.geocode({'address': address}, function(results, status) {
+		    	if (status === google.maps.GeocoderStatus.OK) {
+					resultsMap.setCenter(results[0].geometry.location);
+					marker = new google.maps.Marker({
+						map: resultsMap,
+						position: results[0].geometry.location,
+						title: 'Click para zoom'
+					});
+					map.addListener('center_changed', function() {
+					    // 3 seconds after the center of the map has changed, pan back to the
+					    // marker.
+					    window.setTimeout(function() {
+					      map.panTo(marker.getPosition());
+					      map.setCenter(marker.getPosition());
+					    }, 4000);
+				  	});
+					marker.addListener('click', function() {
+				    	map.setZoom(16);
+				    	map.setCenter(marker.getPosition());
+				  	}); 
+		   		 } else {
+		      		alert('Ups :o ' + status);
+		   		}
+		  	});
+		}
+		
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5N66CIJFrw4Cv4CqLUMfOkGygPXskCHU&signed_in=true&callback=initMap" async defer></script>
+
+	<script src="{% static "js/mdl-jquery-modal-dialog.js"  %}"></script>
+	
+
+	
+	<script>
+	$(function () {   
+		$("div.vacaciones").each(function(i) {
+		  $(this).find('.menu-lower-right').attr('id', 'modificar-' + i+'-vacaciones');
+		  $(this).find('.modificar').attr('for', 'modificar-' + i +'-vacaciones');
+		});
+	});    
+	</script>
+	
+	<script type="text/javascript">
+
+		document.getElementById("uploadBtn").onchange = function() {
+			document.getElementById("uploadFile").value = this.files[0].name;
+		};
+	</script>
+{% endblock %}

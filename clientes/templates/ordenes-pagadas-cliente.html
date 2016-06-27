@@ -1,0 +1,115 @@
+{% extends "base.html" %} 
+{% load static from staticfiles %}
+{% load humanize %}
+{% block staticos %}
+	<link rel="stylesheet" href="{% static "css/mdl-jquery-modal-dialog.css" %}">
+	<style type="text/css">
+	html, body {
+        height: 100%;
+        width: 100% ;
+    }
+		#map {
+	        height: 400px !important;
+	        width: 100% !important;
+      	}
+      	
+	</style>
+    
+{% endblock %}
+{% block header %}
+	<header class="mdl-layout__header mdl-layout__header--scroll mdl-color--deep-green-500">	  			
+		<div class="mdl-layout--large-screen-only mdl-layout__header-row ">	    		
+	    	<div class=" mdl-layout-spacer"></div>
+	    	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+				<form>
+		            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+		              	<i class="material-icons">search</i>
+		            </label>
+		            <div class="mdl-textfield__expandable-holder">
+		              	<input class="mdl-textfield__input" type="text" id="search-field">
+		            </div>
+	            </form>
+	      	</div>
+		</div>
+		<div class="mdl-typography--text-center ">
+			<div class="mdl-layout-title">
+				<h1 >{{page_title}} - {{cliente.nombre}} {{cliente.apellidos}}</h1>
+			</div>
+
+			
+		</div>
+		<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+			<!---->
+		</div>	
+		<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--deep-green-A400">
+          	<a href="#ordenes" class="mdl-layout__tab is-active">Ordenes</a>		    
+		</div>
+		
+			
+	</header>
+{% endblock %}
+
+{% block contedor %}
+  	<main class="mdl-layout__content mdl-color--grey-100">	  	
+	  	<div class="mdl-grid demo-content mdl-layout__tab-panel is-active" id="ordenes">
+	  		<div class="mdl-grid">	  		
+	  			<div class="demo-cards mdl-cell mdl-cell--3-col mdl-grid mdl-grid--no-spacing">	
+	  				
+		  			<div class="demo-card-image mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp" style="background-image: url('{{cliente.imagen.url}}');background-repeat: no-repeat;background-size: cover;background-position: center;">
+						<div class="mdl-card__title mdl-card--expand"></div>
+						<div class="mdl-card__actions">
+							<span class="demo-card-image__filename">{{cliente.nombre}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="demo-cards mdl-cell mdl-cell--9-col mdl-grid mdl-grid--no-spacing">	
+				
+		    	<section class="section--center mdl-grid mdl-grid--no-spacing mdl-cell--10-col mdl-shadow--2dp">
+		    		<div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+			    		<h4>Ordenes Pagadas</h4>
+			    		
+			    		<div class="section__text mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+			    		<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-fullwidth">
+						  	<thead>
+						    <tr>
+						      	<th class="mdl-data-table__cell--non-numeric mdl-fullwidth ">Orden</th>
+						      	<th>Cliente</th>
+						      	<th>Subtotal</th>
+						      	<th>Total</th>
+						      	<th>Saldo</th>					      	
+						    </tr>
+						  	</thead>
+						  	<tbody>
+						  	{% for op in ordenes_pagadas %}
+						    	<tr>
+						      		<td class="mdl-data-table__cell--non-numeric">
+						      			<a href="{{ op.get_absolute_url }}">
+						      				{{op.id}}
+						      			</a>
+						      		</td>
+						      		<td>{{op.cliente.nombre}} {{op.cliente.apellidos}}</td>				      	
+						      		<td>{{op.subtotal}}</td>
+						      		<td>{{op.total}}</td>
+						      		<td>{{op.saldo}}</td>
+						    	</tr>
+						    {% endfor %}
+						    
+						  	</tbody>
+						</table>
+		                </div>
+			    		
+			    	</div>
+		    		<div class="mdl-card__actions">
+	              	</div>	              	
+		    	</section>
+		    	</div>
+	    	</div>
+	  	</div>	
+		    
+			
+   	</main>
+{% endblock %}
+
+{% block adicional-scripts %}
+  
+{% endblock %}

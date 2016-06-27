@@ -1,0 +1,45 @@
+{% extends "base.html" %} 
+
+{% block estaticos %}
+	
+{% endblock %} 
+{% block header %}
+<div class="bodywhite">
+	<div class="container">
+		<header class="text-center text-capitalize error">
+		    <h1>Lo sentimos <small>:(</small></h1>
+		</header>
+{% endblock %} 
+{% block contedor %}
+		<div class="row ">
+		    <div class="col-md-6 col-md-offset-3 text-justify">
+				<blockquote class="blockquote-danger">
+					<p>Usted no es un usuario registrado.</p>
+					<footer>Si olvido o extravio su contraseña pongase en contacto con el departamento de sistemas</footer>
+				</blockquote>				
+				<address>
+					<strong>CrossFit Club Sparta..</strong><br>
+					Domicilio Conicido<br>
+					Sahuayo, Mich C.P. 59000<br>
+					<abbr title="Telefono">Tel:</abbr> (353) 533-6300
+				</address>
+
+				<address>
+					<strong>Soporte</strong><br>
+					<a href="mailto:alr.vivas@gmail.com">alr.vivas@gmail.com</a>
+				</address>	        
+		    </div>                  
+		    <div class="clearfix visible-xs"></div>
+		</div>
+	</div>
+</div>
+{% endblock %} 
+{% block footer %}
+<footer class="footer">
+	<div class="container">
+		<div class="col-md-6 col-md-offset-3 text-center">
+			<p>Powered by DIDEC.</p>
+		</div>
+	</div>
+</footer>
+{% endblock %}

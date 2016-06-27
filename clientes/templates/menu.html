@@ -1,0 +1,39 @@
+{% load static from staticfiles %}
+<div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+	<header class="demo-drawer-header ">
+		<img src="{% static  "img/user.jpg"  %}" class="demo-avatar" />
+      	<div class="demo-avatar-dropdown">
+	 		<span>{{ user.username }}</span>
+	 		<div class="mdl-layout-spacer"></div>
+	 	</div>
+	</header>
+	<nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">			
+		<a class="mdl-navigation__link" href="{% url 'index' %}">
+			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Inicio
+		</a>
+		<a class="mdl-navigation__link" href="{% url 'empresas' %}">
+			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">group</i>Clientes
+		</a>
+		<a class="mdl-navigation__link" href="#">
+			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">fitness_center</i>Ejercicios
+		</a>				
+		<a class="mdl-navigation__link" href="">
+			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">whatshot</i>Benchmarks
+		</a>
+		<a class="mdl-navigation__link" href="#">
+			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_basket</i>Punto de Venta
+		</a>
+		<a class="mdl-navigation__link" href="#">
+			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">store_mall_directory</i>Almacenes
+		</a>
+		<a class="mdl-navigation__link" href="#">
+			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_balance_wallet</i>Credito y Cobranza
+		</a>
+		<a class="mdl-navigation__link" href="#">
+			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_cafe</i>Productos
+		</a>			
+		<a class="mdl-navigation__link" href="/logout/">
+			<i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">power_settings_new</i>Salir
+		</a>
+	</nav>
+</div>

@@ -1,0 +1,24 @@
+{% load static from staticfiles %} 
+<!DOCTYPE html>
+<html lang="es-Mx">
+  	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">	   
+	    <title>{% block title %}{% if page_title %}{{ page_title }} - {% endif %}{{ site_name }}{% endblock %}</title>
+     	{% include "head.html" %}
+     	{% block staticos %}{% endblock %} 
+  	</head>
+  	<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+  		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	  	 	{% block header %}{% endblock %} 
+	  	 	{% include "menu.html" %}  
+	    	{% block contedor %}{% endblock %}
+	    	{% block contedor_par_iframe %}{% endblock %}
+	    	{% block footer %}{% endblock %}
+	    </div>
+	   	{% include "scripts.html" %}
+	   	{% block adicional-scripts %}{% endblock %}
+  	</body>
+</html>		    	
+				

@@ -1,0 +1,81 @@
+{% extends "base.html" %} 
+{% block header %}
+	<header class="mdl-layout__header mdl-layout__header--scroll mdl-color--deep-orange-500">	  			
+		<div class="mdl-layout--large-screen-only mdl-layout__header-row">	    		
+	    	<div class=" mdl-layout-spacer"></div>
+	    	<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+				<form>
+		            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+		              	<i class="material-icons">search</i>
+		            </label>
+		            <div class="mdl-textfield__expandable-holder">
+		              	<input class="mdl-textfield__input" type="text" name="q" value="{{ query|escape }}" id="search-field">
+		            </div>
+	            </form>
+	      	</div>
+		</div>
+		<div class="mdl-typography--text-center ">
+			<div class="mdl-layout-title">
+				{% if query %}<h1 >{{ query|escape }}</h1> {% endif %}	
+			</div>
+
+			
+		</div>
+		<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+			<!---->
+		</div>	
+		<div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--deep-orange-A400">
+			
+			<a href="{% url 'add-cliente' %}" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
+	            <i class="material-icons" role="presentation">add</i>
+	            <span class="visuallyhidden">Add</span>
+	      </a>
+		</div>	
+	</header>
+{% endblock %}
+
+{% block contedor %}
+  	<main class="mdl-layout__content mdl-color--grey-100">
+	  	<div class="mdl-grid demo-content mdl-layout__tab-panel is-active">		  		
+		    	<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid ">	    		
+		    		<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-fullwidth">
+					  <thead>
+					    <tr>
+					      	<th class="mdl-data-table__cell--non-numeric mdl-fullwidth ">Nombre</th>
+					      	<th>Apellidos</th>
+					      	<th>Celular</th>
+					      	<th>Telefono</th>
+					      	<th>Días de Credito</th>
+					      	<th>Fecha Registro</th>
+					    </tr>
+					  	</thead>
+					  	<tbody>
+					  	
+					  	{% if results %}  
+					  		{% for c in results %}
+					    	<tr>
+					      		<td class="mdl-data-table__cell--non-numeric">
+					      			<a href="{{ c.get_absolute_url }}">
+					      				{{c.nombre}}
+					      			</a>
+					      		</td>
+					      		<td>{{c.apellidos}}</td>					      		
+					      		<td>{{c.celular}}</td>
+					      		<td>{{c.telefono}}</td>
+					      		<td>{{c.dias_credito}}</td>
+					      		<td>{{c.fecha_registro}}</td>
+					    	</tr>
+					    	{% endfor %}
+			    		{% else %}             
+                    		<p>No hay resultados para {{ query|escape }} :(</p>
+					    {% endif %}	
+					   
+					    
+					  </tbody>
+					</table>
+		    	</div>
+	  	</div>	
+		    
+			
+   	</main>
+{% endblock %}

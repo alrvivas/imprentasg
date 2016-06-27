@@ -1,0 +1,68 @@
+@media print {
+	#orden,.header{display: none;}
+	section.tiket{
+		display: block !important;
+		width: 87mm;
+		height: 300mm;
+		padding: 5mm;
+		margin: 5mm auto;
+		border: 1px solid #000;
+	}
+	.tiket .t-fecha	{
+		font-size: 11px;
+		text-align: right;
+		text-transform: uppercase;
+		width: 100%;
+	}
+	.tiket .t-orden{
+		font-size: 11px;
+		text-align: right;
+		text-transform: uppercase;
+		width: 25%;
+		float: left;
+	}
+	.tiket .t-empresa{
+		font-size: 11px;
+		text-align: left;
+		text-transform: uppercase;
+		width: 75%;
+		float: left;
+
+	}
+	.tiket .t-cliente{
+		font-size: 11px;
+		text-align: justify;
+		text-transform: uppercase;
+		width: 100%;
+	}
+	table,th,td{
+		margin: 0px !important;
+		border-spacing: 0px !important;
+	}
+	table{
+		width: 100%;
+		margin: 0px !important;
+	}
+	table tr th{
+		font-size: 10px;
+		text-align: center;
+		text-transform: uppercase;
+		border: 1px solid #000;
+		margin: 0px !important;
+		padding: 0px !important;
+	}
+	table tr td{
+		font-size: 8px;
+		text-align: center;
+		text-transform: uppercase;
+		border: 1px solid #000;
+		margin: 0px !important;
+		padding: 0px !important;
+	}
+	table tr td.producto{
+		font-size: 8px;
+		text-align: left;
+		text-transform: uppercase;
+		padding-left: 2px !important;
+	}
+}

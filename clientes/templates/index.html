@@ -1,0 +1,88 @@
+{% extends "base.html" %} 
+{% block header %}
+	<header class="mdl-layout__header mdl-layout__header-bacground mdl-layout__header--scroll mdl-color--transparent">	  			
+	<div class="mdl-layout--large-screen-only mdl-layout__header-row">	    		
+    	<div class=" mdl-layout-spacer"></div>
+    	
+	</div>
+	<div class="mdl-typography--text-center ">
+		<div class="mdl-layout-title">
+			<h1 class="sobra-text" >Imprenta SC</h1>
+		</div>
+	</div>
+	<div class="mdl-layout--large-screen-only mdl-layout__header-row">
+		<!---->
+	</div>	
+		
+	</header>
+{% endblock %}
+
+{% block contedor %}
+	<main class="mdl-layout__content mdl-color--grey-100">
+  	<div class="mdl-grid demo-content mdl-layout__tab-panel is-active">	
+	  	<div class="mdl-grid">
+	  		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid " id="add-empresa">
+			    <a href="{% url 'add-empresa' %}" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--blue-500">domain</i>			      
+			    </a>
+			</div>						
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid " id="trabajos">
+			    <a href="#" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--green-500">assignment</i>      
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid " id="benchmarks">
+			    <a href="" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--red-500">whatshot</i>			      
+			    </a>
+			</div>		
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid " id="credito-cobranza">
+			    <a href="#" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--purple-500">account_balance_wallet</i>
+			      
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid " id="ventas">
+			    <a href="#" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--orange-500">shopping_basket</i>
+			      
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid " id="configuracion">
+			    <a href="#" class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--grey-500">settings</i>
+			    </a>
+			</div>
+			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--3-col mdl-grid " id="salir">
+			    <a href="/logout/"  class="mdl-cell--12-col mdl-typography--text-center">
+			      <i class="material-icons md-128 mdl-color-text--red-500">power_settings_new</i>		      
+			    </a>
+			</div>
+		</div>
+		<div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" for="add-empresa">
+			Añadir Empresa
+		</div>
+		<div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" for="trabajos">
+			Ver Trabajos
+		</div>
+		<div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" for="benchmarks">
+			Benchmarks
+		</div>
+		<div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" for="credito-cobranza">
+			Credito y Cobranza
+		</div>
+		<div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" for="ventas">
+			Punto de Ventas
+		</div>
+		<div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" for="almacen">
+			Almacenes
+		</div>
+		<div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" for="configuracion">
+			Configuración
+		</div>
+		<div class="mdl-tooltip mdl-tooltip--top mdl-tooltip--large" for="salir">
+			Salir
+		</div>
+  	</div>			
+	</main>
+{% endblock %}
